@@ -1,4 +1,4 @@
-# password-generator
+# JavaScript Password Generator
 
 ## The Task
 
