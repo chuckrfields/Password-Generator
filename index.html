@@ -40,44 +40,44 @@
 
             //Need to determine how many character types have been selected
             //We plan to randomize the types as we build the password
-            var characterTypesLength = 4;
+
+            var characterTypes = [];
             
-            // if (includeLowerCase) {
-            //     characterTypesLength++;
-            // }
+            if (includeLowerCase) {
+                characterTypes.push("includeLowerCase");
+            }
 
-            // if (includeUpperCase) {
-            //     characterTypesLength++;
-            // }
+            if (includeUpperCase) {
+                characterTypes.push("includeUpperCase");
+            }
 
-            // if (includeNumeric) {
-            //     characterTypesLength++;
-            // }
+            if (includeNumeric) {
+                characterTypes.push("includeNumeric");
+            }
 
-            // if (includeSpecialCharacters) {
-            //     characterTypesLength++;
-            // }
+            if (includeSpecialCharacters) {
+                characterTypes.push("includeSpecialCharacters");
+            }
 
+            var characterTypesLength = characterTypes.length;
 
             for (l = 0; l < passwordLength; l++) {
 
                 //Get random character type
                 var rndType = Math.floor(Math.random() * characterTypesLength);
-                // alert("Character: " + l + "; Character Type: " + rndType + "; Password: " + password);
 
-                if ((includeLowerCase || includeUpperCase) && (rndType === 0 || rndType === 1)) {
+                var CharType = characterTypes[rndType];
+
+                if (CharType === "includeLowerCase" || CharType === "includeUpperCase") {
                     password += generateRandomString(includeLowerCase, includeUpperCase);
                 }
-                else if (includeNumeric && rndType === 2) {
+                else if (CharType === "includeNumeric") {
                     password += generateRandomNumber();
                 }
-                else if (includeSpecialCharacters && rndType === 3) {
+                else if (CharType === "includeSpecialCharacters") {
                     password += generateRandomSpecialCharacter();
                 }
-                else {
-                    l = l -1;
-                }
-                // alert("Character: " + l + "; Character Type: " + rndType + "; Password: " + password);
+
             }
 
             // alert(password);
