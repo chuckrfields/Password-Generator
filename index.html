@@ -10,32 +10,161 @@
      <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
+    <script>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>Password Generator</h1>               
-            </div>
-        </div>
+        function GeneratePassword() {
+            var passwordLength = prompt("Length? (8-128)");
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card" >
-                    <h5>Generate a Password</h5>
-                    <p>password goes here<br></p>
-                    
-                </div>
-            </div>
-        </div>
+            if (validatePasswordLength(passwordLength) === false) {
+                alert("Password length must be between 8 and 128!");
+                return false;
+            }
 
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <input class="btn btn-danger btn-lg btnPassword" type="submit" value="Generate Password">
-            </div>
-            <div class="col-sm-4"></div>
-        </div>
+            var includeLowerCase = confirm("Include lower case?");
+            var includeUpperCase = confirm("Include upper case?");
+            var includeNumeric = confirm("Include numbers?");
+            var includeSpecialCharacters = confirm("Include special characters?");
 
+            if (validateCharacterType(includeLowerCase, includeUpperCase, includeNumeric, includeSpecialCharacters) === false) {
+                alert("You must select at least one character type!");
+                return false;
+            }
+
+            generateUserPassword(passwordLength, includeLowerCase, includeUpperCase, includeNumeric, includeSpecialCharacters);
+
+        }
+
+        function generateUserPassword(passwordLength, includeLowerCase, includeUpperCase, includeNumeric, includeSpecialCharacters) {
+            //Need to build string == passwordLength
+            var password = '';
+
+            //Need to determine how many character types have been selected
+            //We plan to randomize the types as we build the password
+            var characterTypesLength = 4;
+            
+            // if (includeLowerCase) {
+            //     characterTypesLength++;
+            // }
+
+            // if (includeUpperCase) {
+            //     characterTypesLength++;
+            // }
+
+            // if (includeNumeric) {
+            //     characterTypesLength++;
+            // }
+
+            // if (includeSpecialCharacters) {
+            //     characterTypesLength++;
+            // }
+
+
+            for (l = 0; l < passwordLength; l++) {
+
+                //Get random character type
+                var rndType = Math.floor(Math.random() * characterTypesLength);
+                // alert("Character: " + l + "; Character Type: " + rndType + "; Password: " + password);
+
+                if ((includeLowerCase || includeUpperCase) && (rndType === 0 || rndType === 1)) {
+                    password += generateRandomString(includeLowerCase, includeUpperCase);
+                }
+                else if (includeNumeric && rndType === 2) {
+                    password += generateRandomNumber();
+                }
+                else if (includeSpecialCharacters && rndType === 3) {
+                    password += generateRandomSpecialCharacter();
+                }
+                else {
+                    l = l -1;
+                }
+                // alert("Character: " + l + "; Character Type: " + rndType + "; Password: " + password);
+            }
+
+            // alert(password);
+
+            var res = encodeURI(password);
+            document.getElementById('lblPassword').innerHTML = res;
+        }
+
+        function generateRandomString(includeLowerCase, includeUpperCase) {
+            var characters = '';
+            var s = '';
+
+            if (includeLowerCase) {
+                characters += 'abcdefghijklmnopqrstuvwxyz';
+            }
+            if (includeUpperCase) {
+                characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            }
+
+            var charactersLength = characters.length;
+
+            s = characters.charAt(Math.floor(Math.random() * charactersLength));
+           
+            return (s);
+
+        }
+
+        function generateRandomSpecialCharacter() {
+            var characters =  " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+            characters += '"';
+            var charactersLength = characters.length;
+
+            s = characters.charAt(Math.floor(Math.random() * charactersLength));
+            return (s);
+        }
+
+        function generateRandomNumber() {
+            var rnd = Math.floor(Math.random() * 10);
+            return (rnd);
+        }
+
+        function validatePasswordLength(passwordLength) {
+            if (passwordLength >= 8 && passwordLength <= 128) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function validateCharacterType (includeLowerCase, includeUpperCase, includeNumeric, includeSpecialCharacters) {
+            if (includeLowerCase === false && includeUpperCase === false && includeNumeric === false && includeSpecialCharacters === false) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+
+    <div class="card container">
+
+        <div class="card-title text-center">
+            <h1>Password Generator</h1>
+        </div>   
+            
+        <div class="card-body">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" >
+                        <div style="margin: 30px;">
+                            <div class="card-title" >
+                                <h4>Generate a Password</h4>
+                            </div>
+                            <hr>
+                            <div class="card text-center">
+                                <div class="card-title" >
+                                    Your Secure Password
+                                </div>
+                                <p class="card-text"><label id="lblPassword"></label></p> <br>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <input class="btn btn-danger text-center responsive-width" type="submit" value="Generate Password" onclick="GeneratePassword();">
+                    </div>
+        </div>          
     </div>
 </body>
 </html>

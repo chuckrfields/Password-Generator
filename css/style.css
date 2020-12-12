@@ -1,4 +1,22 @@
-.btnpassword {
-    padding: 10px;
+.btn {
+    width: 20vw;
+    border-radius: 75px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.5vw;
+    background-color: darkred;
+}
+
+.container {
+    width: 75%;
+    height: 100%;
+    background-color: rgb(248, 247, 247);
     margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 50px, 20px, 30px, 20px;
+}
+
+.card {
+   margin: 20px, 10px, 20px, 10px;
+   padding: 25px;
 }
