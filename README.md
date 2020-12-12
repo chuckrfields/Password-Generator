@@ -38,3 +38,9 @@ THEN the password is either displayed in an alert or written to the page
 The following image shows the web application's appearance and functionality:
 
 ![password generator demo](./img/screenshot.png)
+
+## Link to Active Application
+
+The application can be accessed via the link below:
+
+https://chuckrfields.github.io/password-generator/
