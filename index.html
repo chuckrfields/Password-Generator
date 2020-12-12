@@ -81,9 +81,7 @@
             }
 
             // alert(password);
-
-            var res = encodeURI(password);
-            document.getElementById('lblPassword').innerHTML = res;
+            document.getElementById('lblPassword').innerHTML = JSON.stringify(password);
         }
 
         function generateRandomString(includeLowerCase, includeUpperCase) {
