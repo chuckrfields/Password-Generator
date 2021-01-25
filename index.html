@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="css/reset.css">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
      <link rel="stylesheet" href="css/style.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 </head>
 <body>
     <script>
 
         function GeneratePassword() {
-            var passwordLength = prompt("Length? (8-128)");
+            var passwordLength = prompt("Length? (8-8000)");
 
             if (validatePasswordLength(passwordLength) === false) {
-                alert("Password length must be between 8 and 128!");
+                alert("Password length must be between 8 and 8000!");
                 return false;
             }
 
@@ -37,6 +38,7 @@
         function generateUserPassword(passwordLength, includeLowerCase, includeUpperCase, includeNumeric, includeSpecialCharacters) {
             //Need to build string == passwordLength
             var password = '';
+            var str = '';
 
             //Need to determine how many character types have been selected
             //We plan to randomize the types as we build the password
@@ -63,24 +65,63 @@
 
             for (l = 0; l < passwordLength; l++) {
 
+                console.log(l + " = " + str);
+                document.getElementById('lblPassword').innerHTML = JSON.stringify(password);
+                // setTimeout(() =>  { document.getElementById('lblPassword').innerHTML = JSON.stringify(password); }, 250);
+
                 //Get random character type
                 var rndType = Math.floor(Math.random() * characterTypesLength);
 
                 var CharType = characterTypes[rndType];
 
                 if (CharType === "includeLowerCase" || CharType === "includeUpperCase") {
-                    password += generateRandomString(includeLowerCase, includeUpperCase);
+                    str = generateRandomString(includeLowerCase, includeUpperCase);
+                    password += str;
                 }
                 else if (CharType === "includeNumeric") {
-                    password += generateRandomNumber();
+                    str = generateRandomNumber();
+                    password += str;
                 }
                 else if (CharType === "includeSpecialCharacters") {
-                    password += generateRandomSpecialCharacter();
+                    str = generateRandomSpecialCharacter();
+                    password += str;
                 }
 
+                //  document.getElementById('lblPassword').innerHTML = JSON.stringify(password);
+                // setTimeout(() =>  { document.getElementById('lblPassword').innerHTML = JSON.stringify(str); }, 5000);
+                setTimeout(displayPassword(password) , 30000);
             }
 
             // alert(password);
+            //document.getElementById('lblPassword').innerHTML = JSON.stringify(password);
+
+            // // Wrap every letter in a span
+            // var textWrapper = document.querySelector('.card-text');
+            // textWrapper.innerHTML  = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+            // anime.timeline({loop: false})
+            // .add({
+            //     targets: '.text-center .letter',
+            //     scale: [4,1],
+            //     opacity: [0,1],
+            //     translateZ: 0,
+            //     easing: "easeOutExpo",
+            //     duration: 950,
+            //     delay: (el, i) => 140*i
+            // }
+            // // ).add({
+            // //     targets: '.text-center',
+            // //     opacity: 0,
+            // //     duration: 1000,
+            // //     easing: "easeOutExpo",
+            // //     delay: 500
+            // // }
+            // );
+
+            
+        }
+
+        function displayPassword(password) {
             document.getElementById('lblPassword').innerHTML = JSON.stringify(password);
         }
 
@@ -104,7 +145,7 @@
         }
 
         function generateRandomSpecialCharacter() {
-            var characters =  " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+            var characters =  "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
             characters += '"';
             var charactersLength = characters.length;
 
@@ -118,7 +159,7 @@
         }
 
         function validatePasswordLength(passwordLength) {
-            if (passwordLength >= 8 && passwordLength <= 128) {
+            if (passwordLength >= 8 && passwordLength <= 8000) {
                 return true;
             }
             else {
