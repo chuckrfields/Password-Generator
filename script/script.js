@@ -138,7 +138,7 @@ var specialcharactersLength = specialCharacters.length;
 
             //Output result 
             //document.getElementById('lblPassword').innerHTML = JSON.stringify(password.replace(/</g, "&lt;"));
-            document.getElementById('lblPassword').innerHTML = password;
+            document.getElementById('lblPassword').innerHTML = password;           
             document.getElementById('lblTitle').innerHTML = "Password Length: " + password.length;
             document.getElementById('lblTitleTop').innerHTML = password.length;
 
@@ -148,7 +148,8 @@ var specialcharactersLength = specialCharacters.length;
                 password = password.substring(0, maxLimit);
                 document.getElementById('lblTitle').innerHTML = "Password Length: " + password.length;
                 document.getElementById('lblTitleTop').innerHTML = password.length;
-                document.getElementById('lblPassword').innerHTML = password;
+                // document.getElementById('lblPassword').innerHTML = password;
+                document.getElementById('lblPassword').innerHTML = password.replace(/</g, "&lt;");
                 document.getElementById("lblTitle").style.color = "blue";
                 document.getElementById("lblTitleTop").style.color = "blue";
                 document.getElementById("btnReset").style.display = "inline-block";
@@ -162,7 +163,8 @@ var specialcharactersLength = specialCharacters.length;
                 password = password.substring(0, passwordLength);
                 document.getElementById('lblTitle').innerHTML = "Password Length: " + password.length;
                 document.getElementById('lblTitleTop').innerHTML = password.length;
-                document.getElementById('lblPassword').innerHTML = password;
+                // document.getElementById('lblPassword').innerHTML = password;
+                document.getElementById('lblPassword').innerHTML = password.replace(/</g, "&lt;");
                 document.getElementById("lblTitle").style.color = "blue";
                 document.getElementById("lblTitleTop").style.color = "blue";
                 document.getElementById("btnReset").style.display = "inline-block";
@@ -200,6 +202,7 @@ var specialcharactersLength = specialCharacters.length;
                 var successful = document.execCommand('copy');
                 var msg = successful ? 'successful' : 'unsuccessful';
                 console.log('Copying text command was ' + msg);
+                alert("Password copied to clipboard!");
               } catch (err) {
                 console.log('Oops, unable to copy');
               }
