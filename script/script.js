@@ -24,6 +24,10 @@ specialCharacters += '"';
 var specialcharactersLength = specialCharacters.length;
 
         function start() {
+            document.getElementById("btnCancel").style.display = "inline-block";
+            document.getElementById("btnCopy").style.display = "inline-block";
+            document.getElementById("btnReset").style.display = "none";
+
             resetVariables();
 
             speed = document.getElementById("displaySpeedTextBox").value;
@@ -108,9 +112,9 @@ var specialcharactersLength = specialCharacters.length;
         }
 
         function generatePassword () {
-            document.getElementById("btnCancel").style.display = "inline-block";
-            document.getElementById("btnCopy").style.display = "inline-block";
-            document.getElementById("btnReset").style.display = "none";
+            // document.getElementById("btnCancel").style.display = "inline-block";
+            // document.getElementById("btnCopy").style.display = "inline-block";
+            // document.getElementById("btnReset").style.display = "none";
 
             x = setInterval(function() {
             //Get random character type
@@ -154,6 +158,8 @@ var specialcharactersLength = specialCharacters.length;
                 document.getElementById("btnReset").style.display = "inline-block";
                 document.getElementById("btnCopy").style.display = "inline-block";
                 document.getElementById("btnCancel").style.display = "none";
+
+                document.getElementById("btnGenerate").disabled = false;
                 alert("Error: Exceeded MaxLimit");
             }
 
@@ -169,24 +175,46 @@ var specialcharactersLength = specialCharacters.length;
                 document.getElementById("btnReset").style.display = "inline-block";
                 document.getElementById("btnCopy").style.display = "inline-block";
                 document.getElementById("btnCancel").style.display = "none";
+
+                document.getElementById("btnGenerate").disabled = false;
             }
 
             }, speed);
         }
 
         function cancel() {
-            clearInterval(x);
-            document.getElementById("btnCancel").style.display = "none";
-            document.getElementById("btnReset").style.display = "inline-block";
-            document.getElementById("btnCopy").style.display = "inline-block";
+            try {
+               clearInterval(x);
+                password = password.substring(0, passwordLength);
+                document.getElementById('lblTitle').innerHTML = "Password Length: " + password.length;
+                document.getElementById('lblTitleTop').innerHTML = password.length;
+                // document.getElementById('lblPassword').innerHTML = password;
+                document.getElementById('lblPassword').innerHTML = password.replace(/</g, "&lt;");
+                document.getElementById("lblTitle").style.color = "blue";
+                document.getElementById("lblTitleTop").style.color = "blue";
+
+                document.getElementById("btnCancel").style.display = "none";
+                document.getElementById("btnReset").style.display = "inline-block";
+                document.getElementById("btnCopy").style.display = "inline-block";
+
+                document.getElementById("btnGenerate").disabled = false;
+        } catch (err) {
+            console.log('Oops, unable to cancel');
+          }
         }
 
         function reset() {
-            document.getElementById("lblPassword").innerHTML = "";
-            document.getElementById("lblTitleTop").innerHTML = "";
-            document.getElementById("lblTitle").innerHTML = "";
-            document.getElementById("btnReset").style.display = "none";
-            document.getElementById("btnCopy").style.display = "none";
+            try {
+                document.getElementById("lblPassword").innerHTML = "";
+                document.getElementById("lblTitleTop").innerHTML = "";
+                document.getElementById("lblTitle").innerHTML = "";
+                document.getElementById("btnReset").style.display = "none";
+                document.getElementById("btnCopy").style.display = "none";
+
+                document.getElementById("btnGenerate").disabled = false;
+        } catch (err) {
+            console.log('Oops, unable to reset');
+          }
         }
 
         function copy() {
