@@ -25,7 +25,7 @@ var specialcharactersLength = specialCharacters.length;
 
         function start() {
             document.getElementById("btnCancel").style.display = "inline-block";
-            document.getElementById("btnCopy").style.display = "inline-block";
+            document.getElementById("btnCopy").style.display = "none";
             document.getElementById("btnReset").style.display = "none";
 
             resetVariables();
@@ -112,9 +112,6 @@ var specialcharactersLength = specialCharacters.length;
         }
 
         function generatePassword () {
-            // document.getElementById("btnCancel").style.display = "inline-block";
-            // document.getElementById("btnCopy").style.display = "inline-block";
-            // document.getElementById("btnReset").style.display = "none";
 
             x = setInterval(function() {
             //Get random character type
