@@ -42,6 +42,9 @@ var specialcharactersLength = specialCharacters.length;
         }
 
         function resetVariables() {
+            document.getElementById("lblPassword").innerHTML = "";
+            document.getElementById("lblTitleTop").innerHTML = "";
+            document.getElementById("lblTitle").innerHTML = "";
             passwordLength = 0;
             includeLowerCase = false;   
             includeUpperCase = false;   
@@ -91,11 +94,6 @@ var specialcharactersLength = specialCharacters.length;
                 characterTypes.push("includeSpecialCharacters");
             }
 
-            // if (document.getElementById("myCheck").checked = true) {
-            //     //Special Characters has bug--returning inconsistent character length
-            //     characterTypes.push("includeSpecialCharacters");
-            // }
-
             characterTypesLength = characterTypes.length;
 
            // alert("You selected: \n" + characterTypes.join("\n"));
@@ -112,6 +110,7 @@ var specialcharactersLength = specialCharacters.length;
         function generatePassword () {
             document.getElementById("btnCancel").style.display = "inline-block";
             document.getElementById("btnCopy").style.display = "inline-block";
+            document.getElementById("btnReset").style.display = "none";
 
             x = setInterval(function() {
             //Get random character type

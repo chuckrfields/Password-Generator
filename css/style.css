@@ -7,29 +7,29 @@
     background-color: darkred;
 } */
 .btn1 {
-    width: 20vw; 
-    border-radius: 75px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 1.5vw;
+    /* width: 20vw;  */
+    border-radius: 35%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: large;
     background-color: darkgreen;
 }
 
 .btnCopy {
-    width: 5vw;
-    border-radius: 75px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 1vw;
+    /* width: 5vw; */
+    border-radius: 25%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: small;
     background-color: darkblue;
   }
 
 .btnCancel {
-  width: 5vw;
-  border-radius: 75px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 1vw;
+  /* width: 5vw; */
+  border-radius: 25%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: small;
   background-color: darkred;
 }
 
