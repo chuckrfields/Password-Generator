@@ -34,6 +34,10 @@ var specialcharactersLength = specialCharacters.length;
            
             if (promptUser() === 1) {
                 if (validateDisplaySpeed(speed) === false) {
+                    document.getElementById("btnGenerate").disabled = false;
+                    document.getElementById("btnReset").style.display = "none";
+                    document.getElementById("btnCancel").style.display = "none";
+                    document.getElementById("btnCopy").style.display = "none";
                     alert("Display Speed must be between 1 and 10000!");
                 }
                 else {
@@ -66,6 +70,10 @@ var specialcharactersLength = specialCharacters.length;
             passwordLength = document.getElementById("passwordLengthTextBox").value;
 
             if (validatePasswordLength(passwordLength) === false) {
+                document.getElementById("btnGenerate").disabled = false;
+                document.getElementById("btnReset").style.display = "none";
+                document.getElementById("btnCancel").style.display = "none";
+                document.getElementById("btnCopy").style.display = "none";
                 alert("Password length must be between 1 and 10000!");
                 return 0;
             }
@@ -103,6 +111,10 @@ var specialcharactersLength = specialCharacters.length;
            // alert("You selected: \n" + characterTypes.join("\n"));
 
             if (validateCharacterType(includeLowerCase, includeUpperCase, includeNumeric, includeSpecialCharacters) === false) {
+                document.getElementById("btnReset").style.display = "none";
+                document.getElementById("btnCancel").style.display = "none";
+                document.getElementById("btnCopy").style.display = "none";
+                document.getElementById("btnGenerate").disabled = false;
                 alert("You must select at least one character type!");
                 return 0;
             }
