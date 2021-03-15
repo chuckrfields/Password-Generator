@@ -43,4 +43,4 @@ The following image shows the web application's appearance and functionality:
 
 The application can be accessed via the link below:
 
-https://chuckrfields.github.io/password-generator/
+https://chuckrfields.github.io/Password-Generator/
